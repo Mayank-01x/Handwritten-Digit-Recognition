@@ -1,12 +1,12 @@
 import os
 import numpy as np
 from flask import Flask, render_template, request, send_from_directory
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from tensorflow.keras.models import load_model
 from PIL import Image, ImageOps, ImageEnhance
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-
 model = load_model("digit_model.keras", compile=False)
 
 UPLOAD_FOLDER = "uploads"
@@ -35,7 +35,6 @@ def index():
             pred = model.predict(img_array)
             prediction = int(np.argmax(pred))
             probabilities = pred[0]
-
             image_url = f"/uploads/{filename}"
 
     return render_template("index.html", prediction=prediction, image_url=image_url, probs=probabilities)
@@ -45,4 +44,6 @@ def uploaded_file(filename):
     return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
