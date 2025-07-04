@@ -3,6 +3,7 @@
 
 This is a Flask-based web application that allows users to upload an image of a handwritten digit (0–9), and it predicts the digit using a Convolutional Neural Network (CNN) trained on the MNIST dataset.
 
+[![Live on Render](https://img.shields.io/badge/Live-Demo-success?logo=render)](https://handwritten-digit-recognition-gzsh.onrender.com)
 ---
 
 ## 🚀 Features
