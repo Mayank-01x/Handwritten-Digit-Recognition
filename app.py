@@ -7,7 +7,7 @@ from PIL import Image, ImageOps, ImageEnhance
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-model = load_model("digit_model.keras", compile=False)
+model = load_model("digit_model.h5", compile=False)
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)

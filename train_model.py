@@ -5,11 +5,10 @@ import matplotlib.pyplot as plt
 from tensorflow.keras import layers, models, callbacks
 from sklearn.metrics import classification_report, confusion_matrix
 
-
-DATA_DIR = r"enter-path-to-your-dataset-here"
+DATA_DIR = r"D:\Inhouse-Training\Handwritten-Digit-Recognition\dataset"
 IMG_SIZE = (28, 28)
 BATCH_SIZE = 32
-EPOCHS = 50  
+EPOCHS = 50
 AUTO = tf.data.AUTOTUNE
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
@@ -35,8 +34,7 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
 )
 
 def scale(image, label):
-    image = tf.cast(image, tf.float32) / 255.0
-    return image, label
+    return tf.cast(image, tf.float32) / 255.0, label
 
 train_ds = train_ds.map(scale, num_parallel_calls=AUTO).cache().shuffle(1000).prefetch(AUTO)
 val_ds = val_ds.map(scale, num_parallel_calls=AUTO).cache().prefetch(AUTO)
@@ -45,10 +43,8 @@ model = models.Sequential([
     layers.Input(shape=(28, 28, 1)),
     layers.Conv2D(32, 3, activation='relu'),
     layers.MaxPooling2D(),
-
     layers.Conv2D(64, 3, activation='relu'),
     layers.MaxPooling2D(),
-
     layers.Flatten(),
     layers.Dense(128, activation='relu'),
     layers.Dropout(0.5),
@@ -62,7 +58,7 @@ model.compile(optimizer="adam",
 model.summary()
 
 early_stop = callbacks.EarlyStopping(monitor="val_accuracy", patience=3, restore_best_weights=True)
-model_ckpt = callbacks.ModelCheckpoint("digit_model.keras", save_best_only=True)
+model_ckpt = callbacks.ModelCheckpoint("digit_model.h5", save_best_only=True)
 
 history = model.fit(
     train_ds,
@@ -71,9 +67,7 @@ history = model.fit(
     callbacks=[early_stop, model_ckpt]
 )
 
-val_images = []
-val_labels = []
-
+val_images, val_labels = [], []
 for images, labels in val_ds:
     val_images.append(images)
     val_labels.append(labels)
