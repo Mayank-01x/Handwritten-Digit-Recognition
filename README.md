@@ -28,7 +28,6 @@ Handwritten-Digit-Recognition/
 ├── static/
 │   └── style.css           # Optional custom CSS
 ├── train_model.py          # Script to train model (optional)
-├── .gitignore
 └── README.md
 ```
 
@@ -75,28 +74,6 @@ Visit: [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 1. Upload a clear image of a handwritten digit.
 2. App processes and resizes it to 28x28 grayscale.
 3. The CNN predicts the digit and shows confidence scores.
-
----
-
-## 🔐 .gitignore (Recommended)
-
-```gitignore
-uploads/
-__pycache__/
-*.pyc
-*.keras
-*.h5
-.env
-```
-
----
-
-## 📸 Screenshot (Optional)
-
-You can add a screenshot here:
-```markdown
-![Screenshot](static/screenshot.png)
-```
 
 ---
 
