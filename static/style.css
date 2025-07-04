@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.container {
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+input[type="file"] {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.result img {
+    margin-top: 10px;
+    width: 150px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+}
+
+.result ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+}

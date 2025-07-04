@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digit Recognizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Handwritten Digit Recognizer</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="digit_image" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="result">
+                <h2>Prediction: {{ prediction }}</h2>
+                <img src="{{ image_path }}" alt="Uploaded Image">
+                <h3>Confidence Scores:</h3>
+                <ul>
+                    {% for i in range(10) %}
+                        <li>Digit {{ i }}: {{ '%.2f'|format(probs[i] * 100) }}%</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
