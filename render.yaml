@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: handwritten-digit-recognition
+    env: python
+    region: oregon  
+    plan: free
+
+    # GitHub repo
+    repo: https://github.com/Mayank-01x/Handwritten-Digit-Recognition
+    branch: main
+    autoDeploy: true
+
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
