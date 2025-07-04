@@ -5,7 +5,7 @@ services:
     region: oregon  
     plan: free
 
-    # GitHub repo
+    
     repo: https://github.com/Mayank-01x/Handwritten-Digit-Recognition
     branch: main
     autoDeploy: true
