@@ -8,6 +8,7 @@
 <body>
     <div class="container">
         <h1>Handwritten Digit Recognizer</h1>
+
         <form method="POST" enctype="multipart/form-data">
             <input type="file" name="digit_image" required>
             <button type="submit">Predict</button>
@@ -16,7 +17,11 @@
         {% if prediction is not none %}
             <div class="result">
                 <h2>Prediction: {{ prediction }}</h2>
-                <img src="{{ image_path }}" alt="Uploaded Image">
+
+                {% if image_url %}
+                    <img src="{{ image_url }}" alt="Uploaded Image" width="150">
+                {% endif %}
+
                 <h3>Confidence Scores:</h3>
                 <ul>
                     {% for i in range(10) %}
